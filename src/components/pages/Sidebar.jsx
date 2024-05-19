@@ -32,7 +32,7 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Members/Index"
+            href="/soldier"
             className="active"
           >
             <span>Soldiers</span>

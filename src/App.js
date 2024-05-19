@@ -17,10 +17,11 @@ import About from './components/pages/About';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dashboard from './components/pages/Dashboard';
+import Soldier from './components/pages/Soldier';
 
 function Layout({ children }) {
   const location = useLocation();
-  const noHeaderFooterPaths = ['/login','/dashboard']; // Add paths where you don't want to show Header and Footer
+  const noHeaderFooterPaths = ['/login','/dashboard','/soldier']; // Add paths where you don't want to show Header and Footer
 
   const shouldHideHeaderFooter = noHeaderFooterPaths.includes(location.pathname);
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/soldier" element={<Soldier />} />
         </Routes>
       </Layout>
     </BrowserRouter>
