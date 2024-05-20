@@ -163,15 +163,18 @@
       };
 
       function scrollFunction() {
+    var movetopElement = document.getElementById("movetop");
+    if (movetopElement) {
         if (
-          document.body.scrollTop > 20 ||
-          document.documentElement.scrollTop > 20
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
         ) {
-          document.getElementById("movetop").style.display = "block";
+            movetopElement.style.display = "block";
         } else {
-          document.getElementById("movetop").style.display = "none";
+            movetopElement.style.display = "none";
         }
-      }
+    }
+}
 
       // When the user clicks on the button, scroll to the top of the document
       function topFunction() {

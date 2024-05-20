@@ -1,4 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import {
+    TextField,
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    IconButton,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import SoldiersService from '../service/SoldiersService';
 
 const Soldier = () => {
@@ -12,6 +31,8 @@ const Soldier = () => {
         contactInfo: ''
     });
     const [editSoldier, setEditSoldier] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -46,18 +67,19 @@ const Soldier = () => {
 
     const handleUpdateSoldier = async () => {
         try {
-            const data = await SoldiersService.updateSoldier(editSoldier.id, editSoldier, token);
-            setSoldiers(soldiers.map(soldier => (soldier.id === editSoldier.id ? data : soldier)));
+            const data = await SoldiersService.updateSoldier(editSoldier.soldierId, editSoldier, token);
+            setSoldiers(soldiers.map(soldier => (soldier.soldierId === editSoldier.soldierId ? data : soldier)));
             setEditSoldier(null);
+            setOpen(false);
         } catch (error) {
             console.error('Error updating soldier', error);
         }
     };
 
-    const handleDeleteSoldier = async (id) => {
+    const handleDeleteSoldier = async (soldierId) => {
         try {
-            await SoldiersService.deleteSoldier(id, token);
-            setSoldiers(soldiers.filter(soldier => soldier.id !== id));
+            await SoldiersService.deleteSoldier(soldierId, token);
+            setSoldiers(soldiers.filter(soldier => soldier.soldierId !== soldierId));
         } catch (error) {
             console.error('Error deleting soldier', error);
         }
@@ -73,111 +95,198 @@ const Soldier = () => {
         setEditSoldier({ ...editSoldier, [name]: value });
     };
 
+    const handleClickOpen = (soldier) => {
+        setEditSoldier(soldier);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setEditSoldier(null);
+        setOpen(false);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const filteredSoldiers = soldiers.filter(soldier =>
+        `${soldier.firstName} ${soldier.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        soldier.rank.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <div>
+        <div style={{ padding: '20px' }}>
             <h1>Soldiers</h1>
-            <ul>
-                {soldiers.map(soldier => (
-                    <li key={soldier.id}>
-                        {soldier.firstName} {soldier.lastName} ({soldier.rank})
-                        <button onClick={() => setEditSoldier(soldier)}>Edit</button>
-                        <button onClick={() => handleDeleteSoldier(soldier.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            <TextField
+                label="Search Soldiers"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                fullWidth
+                margin="normal"
+            />
+            <TableContainer component={Paper}>
+                <Table aria-label="soldier table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Rank</TableCell>
+                            <TableCell>Date of Birth</TableCell>
+                            <TableCell>Date of Enlistment</TableCell>
+                            <TableCell>Contact Info</TableCell>
+                            <TableCell>Action</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredSoldiers.map(soldier => (
+                            <TableRow key={soldier.soldierId}>
+                                <TableCell>{`${soldier.firstName} ${soldier.lastName}`}</TableCell>
+                                <TableCell>{soldier.rank}</TableCell>
+                                <TableCell>{soldier.dateOfBirth}</TableCell>
+                                <TableCell>{soldier.dateOfEnlistment}</TableCell>
+                                <TableCell>{soldier.contactInfo}</TableCell>
+                                <TableCell>
+                                    <IconButton edge="end" aria-label="edit" onClick={() => handleClickOpen(soldier)}>
+                                        <EditIcon />
+                                    </IconButton>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteSoldier(soldier.soldierId)}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
             <h2>Add New Soldier</h2>
             <form onSubmit={(e) => { e.preventDefault(); handleAddSoldier(); }}>
-                <input
-                    type="text"
+                <TextField
+                    label="First Name"
                     name="firstName"
                     value={newSoldier.firstName}
                     onChange={handleInputChange}
-                    placeholder="First Name"
+                    fullWidth
+                    margin="normal"
                 />
-                <input
-                    type="text"
+                <TextField
+                    label="Last Name"
                     name="lastName"
                     value={newSoldier.lastName}
                     onChange={handleInputChange}
-                    placeholder="Last Name"
+                    fullWidth
+                    margin="normal"
                 />
-                <input
-                    type="text"
+                <TextField
+                    label="Rank"
                     name="rank"
                     value={newSoldier.rank}
                     onChange={handleInputChange}
-                    placeholder="Rank"
+                    fullWidth
+                    margin="normal"
                 />
-                <input
-                    type="date"
+                <TextField
+                    label="Date of Birth"
                     name="dateOfBirth"
+                    type="date"
                     value={newSoldier.dateOfBirth}
                     onChange={handleInputChange}
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
-                <input
-                    type="date"
+                <TextField
+                    label="Date of Enlistment"
                     name="dateOfEnlistment"
+                    type="date"
                     value={newSoldier.dateOfEnlistment}
                     onChange={handleInputChange}
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
-                <input
-                    type="text"
+                <TextField
+                    label="Contact Info"
                     name="contactInfo"
                     value={newSoldier.contactInfo}
                     onChange={handleInputChange}
-                    placeholder="Contact Info"
+                    fullWidth
+                    margin="normal"
                 />
-                <button type="submit">Add Soldier</button>
+                <Button type="submit" variant="contained" color="primary" fullWidth>Add Soldier</Button>
             </form>
 
             {editSoldier && (
-                <>
-                    <h2>Edit Soldier</h2>
-                    <form onSubmit={(e) => { e.preventDefault(); handleUpdateSoldier(); }}>
-                        <input
-                            type="text"
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Edit Soldier</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>Edit soldier details below.</DialogContentText>
+                        <TextField
+                            label="First Name"
                             name="firstName"
                             value={editSoldier.firstName}
                             onChange={handleEditInputChange}
-                            placeholder="First Name"
+                            fullWidth
+                            margin="normal"
                         />
-                        <input
-                            type="text"
+                        <TextField
+                            label="Last Name"
                             name="lastName"
                             value={editSoldier.lastName}
                             onChange={handleEditInputChange}
-                            placeholder="Last Name"
+                            fullWidth
+                            margin="normal"
                         />
-                        <input
-                            type="text"
+                       
+                       <TextField
+                            label="Rank"
                             name="rank"
                             value={editSoldier.rank}
                             onChange={handleEditInputChange}
-                            placeholder="Rank"
+                            fullWidth
+                            margin="normal"
                         />
-                        <input
-                            type="date"
+                        <TextField
+                            label="Date of Birth"
                             name="dateOfBirth"
+                            type="date"
                             value={editSoldier.dateOfBirth}
                             onChange={handleEditInputChange}
+                            fullWidth
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
-                        <input
-                            type="date"
+                        <TextField
+                            label="Date of Enlistment"
                             name="dateOfEnlistment"
+                            type="date"
                             value={editSoldier.dateOfEnlistment}
                             onChange={handleEditInputChange}
+                            fullWidth
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
-                        <input
-                            type="text"
+                        <TextField
+                            label="Contact Info"
                             name="contactInfo"
                             value={editSoldier.contactInfo}
                             onChange={handleEditInputChange}
-                            placeholder="Contact Info"
+                            fullWidth
+                            margin="normal"
                         />
-                        <button type="submit">Update Soldier</button>
-                    </form>
-                </>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="secondary">Cancel</Button>
+                        <Button onClick={handleUpdateSoldier} color="primary">Update</Button>
+                    </DialogActions>
+                </Dialog>
             )}
         </div>
     );

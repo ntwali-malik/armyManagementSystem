@@ -32,7 +32,7 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/soldier"
+            href="/Soldier"
             className="active"
           >
             <span>Soldiers</span>
@@ -48,23 +48,7 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Members/Index"
-            className="active"
-          >
-            <span>Units</span>
-          </a>
-        </li>
-        <li>
-          <a
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "14px",
-              color: "#fff",
-              textDecoration: "none",
-              padding: "10px",
-            }}
-            href="/Members/Index"
+            href="/Unit"
             className="active"
           >
             <span>Units</span>
