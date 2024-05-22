@@ -14,11 +14,13 @@ import {
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle
+    DialogTitle,
+    TablePagination
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SoldiersService from '../service/SoldiersService';
+import { ArrowDropUp as ArrowDropUpIcon, ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material';
 
 const Soldier = () => {
     const [soldiers, setSoldiers] = useState([]);
@@ -33,6 +35,10 @@ const Soldier = () => {
     const [editSoldier, setEditSoldier] = useState(null);
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [sortBy, setSortBy] = useState('firstName');
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -109,7 +115,47 @@ const Soldier = () => {
         setSearchQuery(e.target.value);
     };
 
-    const filteredSoldiers = soldiers.filter(soldier =>
+    const handleSort = (column) => {
+        if (sortBy === column) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortBy(column);
+            setSortOrder('asc');
+        }
+    };
+
+    const renderSortIcon = (column) => {
+        if (sortBy === column) {
+            return sortOrder === 'asc' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
+        }
+        return null;
+    };
+
+    const sortedSoldiers = [...soldiers].sort((a, b) => {
+        const aValue = a[sortBy];
+        const bValue = b[sortBy];
+
+        if (aValue < bValue) {
+            return sortOrder === 'asc' ? -1 : 1;
+        }
+        if (aValue > bValue) {
+            return sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    const paginatedSoldiers = sortedSoldiers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    const filteredSoldiers = paginatedSoldiers.filter(soldier =>
         `${soldier.firstName} ${soldier.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
         soldier.rank.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -128,8 +174,12 @@ const Soldier = () => {
                 <Table aria-label="soldier table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Rank</TableCell>
+                            <TableCell onClick={() => handleSort('firstName')}>
+                                Name {renderSortIcon('firstName')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('rank')}>
+                                Rank {renderSortIcon('rank')}
+                            </TableCell>
                             <TableCell>Date of Birth</TableCell>
                             <TableCell>Date of Enlistment</TableCell>
                             <TableCell>Contact Info</TableCell>
@@ -156,6 +206,14 @@ const Soldier = () => {
                         ))}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    component="div"
+                    count={sortedSoldiers.length}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </TableContainer>
 
             <h2>Add New Soldier</h2>
@@ -240,8 +298,7 @@ const Soldier = () => {
                             fullWidth
                             margin="normal"
                         />
-                       
-                       <TextField
+                        <TextField
                             label="Rank"
                             name="rank"
                             value={editSoldier.rank}
@@ -293,3 +350,4 @@ const Soldier = () => {
 };
 
 export default Soldier;
+

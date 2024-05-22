@@ -54,6 +54,54 @@ const Sidebar = () => {
             <span>Units</span>
           </a>
         </li>
+        <li>
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px",
+            }}
+            href="/Mission"
+            className="active"
+          >
+            <span>Missions</span>
+          </a>
+        </li>
+        <li>
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px",
+            }}
+            href="/Equipment"
+            className="active"
+          >
+            <span>Equipments</span>
+          </a>
+        </li>
+        <li>
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px",
+            }}
+            href="/Training"
+            className="active"
+          >
+            <span>Training</span>
+          </a>
+        </li>
         {/* Add other sidebar links */}
       </ul>
     </div>

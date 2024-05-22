@@ -16,12 +16,14 @@ import {
     DialogContentText,
     DialogTitle,
     Select,
-    MenuItem
+    MenuItem,
+    TablePagination
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UnitService from '../service/UnitService';
 import SoldiersService from '../service/SoldiersService';
+import { ArrowDropUp as ArrowDropUpIcon, ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material';
 
 const Unit = () => {
     const [units, setUnits] = useState([]);
@@ -35,6 +37,10 @@ const Unit = () => {
     const [editUnit, setEditUnit] = useState(null);
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [sortBy, setSortBy] = useState('unitName');
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -129,7 +135,47 @@ const Unit = () => {
         setSearchQuery(e.target.value);
     };
 
-    const filteredUnits = units.filter(unit =>
+    const handleSort = (column) => {
+        if (sortBy === column) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortBy(column);
+            setSortOrder('asc');
+        }
+    };
+
+    const renderSortIcon = (column) => {
+        if (sortBy === column) {
+            return sortOrder === 'asc' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
+        }
+        return null;
+    };
+
+    const sortedUnits = [...units].sort((a, b) => {
+        const aValue = a[sortBy];
+        const bValue = b[sortBy];
+
+        if (aValue < bValue) {
+            return sortOrder === 'asc' ? -1 : 1;
+        }
+        if (aValue > bValue) {
+            return sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    const paginatedUnits = sortedUnits.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+    const handlePageChange = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleRowsPerPageChange = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    const filteredUnits = paginatedUnits.filter(unit =>
         unit.unitName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         unit.unitType.toLowerCase().includes(searchQuery.toLowerCase()) ||
         unit.baseLocation.toLowerCase().includes(searchQuery.toLowerCase())
@@ -149,10 +195,18 @@ const Unit = () => {
                 <Table aria-label="unit table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Unit Name</TableCell>
-                            <TableCell>Unit Type</TableCell>
-                            <TableCell>Base Location</TableCell>
-                            <TableCell>Commander</TableCell>
+                            <TableCell onClick={() => handleSort('unitName')}>
+                                Unit Name {renderSortIcon('unitName')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('unitType')}>
+                                Unit Type {renderSortIcon('unitType')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('baseLocation')}>
+                                Base Location {renderSortIcon('baseLocation')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('commander.firstName')}>
+                                Commander {renderSortIcon('commander.firstName')}
+                            </TableCell>
                             <TableCell>Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -169,12 +223,21 @@ const Unit = () => {
                                     </IconButton>
                                     <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteUnit(unit.unitID)}>
                                         <DeleteIcon />
-                                    </IconButton>
+                                        </IconButton>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={sortedUnits.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handlePageChange}
+                    onRowsPerPageChange={handleRowsPerPageChange}
+                />
             </TableContainer>
 
             <h2>Add New Unit</h2>
