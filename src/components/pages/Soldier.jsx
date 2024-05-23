@@ -160,6 +160,8 @@ const Soldier = () => {
         soldier.rank.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const totalSoldiers = sortedSoldiers.length;
+
     return (
         <div style={{ padding: '20px' }}>
             <h1>Soldiers</h1>
@@ -208,11 +210,12 @@ const Soldier = () => {
                 </Table>
                 <TablePagination
                     component="div"
-                    count={sortedSoldiers.length}
+                    count={totalSoldiers}
                     page={page}
                     onPageChange={handleChangePage}
                     rowsPerPage={rowsPerPage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    rowsPerPageOptions={[5, 10, 25]}  // Added rowsPerPageOptions
                 />
             </TableContainer>
 
@@ -350,4 +353,3 @@ const Soldier = () => {
 };
 
 export default Soldier;
-

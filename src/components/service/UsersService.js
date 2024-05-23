@@ -116,6 +116,11 @@ class UsersService{
         return this.isAuthenticated() && this.isAdmin();
     }
 
+    static getRole() {
+        const role = localStorage.getItem('role');
+        return role;
+      }
+
 }
 
 export default UsersService;

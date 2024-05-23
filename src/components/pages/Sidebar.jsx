@@ -1,6 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import UserService from "../service/UsersService";
 
 const Sidebar = () => {
+  const isAuthenticated = UserService.isAuthenticated();
+
+  const handleLogout = () => {
+    const confirmDelete = window.confirm("Are you sure you want to logout this user?");
+    if (confirmDelete) {
+      UserService.logout();
+    }
+  };
+
   return (
     <div
       style={{
@@ -23,7 +34,7 @@ const Sidebar = () => {
       </h3>
       <ul>
         <li>
-          <a
+          <Link
             style={{
               display: "flex",
               alignItems: "center",
@@ -32,14 +43,14 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Soldier"
+            to="/Soldier"
             className="active"
           >
             <span>Soldiers</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             style={{
               display: "flex",
               alignItems: "center",
@@ -48,14 +59,14 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Unit"
+            to="/Unit"
             className="active"
           >
             <span>Units</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             style={{
               display: "flex",
               alignItems: "center",
@@ -64,14 +75,14 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Mission"
+            to="/Mission"
             className="active"
           >
             <span>Missions</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             style={{
               display: "flex",
               alignItems: "center",
@@ -80,14 +91,14 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Equipment"
+            to="/Equipment"
             className="active"
           >
             <span>Equipments</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             style={{
               display: "flex",
               alignItems: "center",
@@ -96,14 +107,32 @@ const Sidebar = () => {
               textDecoration: "none",
               padding: "10px",
             }}
-            href="/Training"
+            to="/Training"
             className="active"
           >
             <span>Training</span>
-          </a>
+          </Link>
         </li>
         {/* Add other sidebar links */}
       </ul>
+      {isAuthenticated && (
+        <div style={{ position: "absolute", bottom: "2px", left: "20px" }}>
+          <Link
+            to="/"
+            onClick={handleLogout}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px",
+            }}
+          >
+            Logout
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

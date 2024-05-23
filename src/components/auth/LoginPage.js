@@ -23,7 +23,7 @@ function LoginPage() {
       }else if (userData.token && userData.role == "USER"){
         localStorage.setItem("token", userData.token);
         localStorage.setItem("role", userData.role);
-        navigate("/about");
+        navigate("/UserDashboard");
       }
        else {
         setError(userData.message);
