@@ -16,10 +16,11 @@ import Mission from './components/pages/Mission';
 import Equipment from './components/pages/Equipment';
 import Training from './components/pages/Training';
 import ProtectedRoute from './components/pages/ProtectedRoute';
+import NotFoundPage from './components/pages/NotFoundPage';
 
 function Layout({ children }) {
   const location = useLocation();
-  const noHeaderFooterPaths = ['/login', '/dashboard', '/Soldier', '/Unit', '/signup', '/Mission', '/Equipment', '/Training'];
+  const noHeaderFooterPaths = ['/login', '/dashboard', '/Soldier', '/Unit', '/signup', '/Mission', '/Equipment', '/Training','/*'];
   const shouldHideHeaderFooter = noHeaderFooterPaths.includes(location.pathname);
 
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/Mission" element={<ProtectedRoute allowedRoles={['ADMIN', 'USER']}><Mission /></ProtectedRoute>} />
             <Route path="/Equipment" element={<ProtectedRoute allowedRoles={['ADMIN']}><Equipment /></ProtectedRoute>} />
             <Route path="/Training" element={<ProtectedRoute allowedRoles={['ADMIN', 'USER']}><Training /></ProtectedRoute>} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>
