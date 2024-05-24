@@ -1,14 +1,13 @@
-// Dashboard.js
 import React from 'react';
-import Sidebar from './Sidebar';
+import UserSideBar from './UserSideBar';
 import DashboardContent from './DashboardContent';
 import Grid from '@mui/material/Grid';
 
-const Dashboard = () => {
+const DashboardUser = () => {
   return (
     <Grid container>
       <Grid item xs={3}>
-        <Sidebar />
+        <UserSideBar />
       </Grid>
       <Grid item xs={9}>
         <DashboardContent />
@@ -17,4 +16,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardUser;

@@ -102,7 +102,7 @@ function Footer() {
         <section className="w3l-copyright text-center">
           <div className="container">
             <p className="copy-footer-29">
-              © 2020 Maliki and Ivan
+              © 2024 Maliki and Ivan
             </p>
           </div>
 

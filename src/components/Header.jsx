@@ -72,9 +72,19 @@ function Header() {
                     Courses
                   </a>
                 </li>
+                <li className="nav-item @@gallery__active">
+                  <a className="nav-link" href="/gallery">
+                    Gallery
+                  </a>
+                </li>
                 <li className="nav-item @@contact__active">
                   <a className="nav-link" href="/contact">
                     Contact
+                  </a>
+                </li>
+                <li className="nav-item @@contact__active">
+                  <a className="nav-link" href="/chat">
+                    Chat
                   </a>
                 </li>
               </ul>

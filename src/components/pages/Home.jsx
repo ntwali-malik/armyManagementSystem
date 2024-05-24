@@ -660,23 +660,25 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          The Army Management System has revolutionized the way
+                          we manage our operations. From personnel tracking to
+                          logistics management, the system provides real-time
+                          data and analytics that help us make informed
+                          decisions quickly and efficiently. It's a game-changer
+                          for our organization.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team1.jpg"
+                            src="assets/images/instructor2.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>John wilson</h3>
-                          <p className="indentity">Student</p>
+                          <h3> John Doe </h3>
+                          <p className="indentity">Lieutenant General </p>
                         </div>
                       </div>
                     </div>
@@ -687,23 +689,25 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          Before implementing the Army Management System,
+                          coordinating our units and resources was a challenging
+                          and time-consuming task. Now, we have a centralized
+                          platform that streamlines communication and logistics,
+                          ensuring that our troops are always prepared and
+                          well-supported.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team2.jpg"
+                            src="assets/images/instructor3.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Julia sakura</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Jane Smith</h3>
+                          <p className="indentity">Colonel</p>
                         </div>
                       </div>
                     </div>
@@ -714,23 +718,24 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          The Army Management System is an indispensable tool
+                          for our command structure. It offers a comprehensive
+                          overview of our personnel, equipment, and missions,
+                          enabling us to optimize our strategies and enhance our
+                          operational readiness.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team3.jpg"
+                            src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Roy Linderson</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Robert Johnson</h3>
+                          <p className="indentity">Major </p>
                         </div>
                       </div>
                     </div>
@@ -741,23 +746,23 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          As a logistics officer, the Army Management System has
+                          made my job much easier. It integrates various aspects
+                          of supply chain management, from inventory control to
+                          distribution, in a seamless manner.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team4.jpg"
+                            src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Mike Thyson</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Emily Davis</h3>
+                          <p className="indentity">Captain</p>
                         </div>
                       </div>
                     </div>
@@ -768,23 +773,24 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          The real-time data provided by the Army Management
+                          System has been crucial for our strategic planning and
+                          execution. It allows us to monitor and adjust our
+                          operations dynamically, ensuring that we stay ahead of
+                          potential challenges.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team2.jpg"
+                            src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Laura gill</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Michael Lee</h3>
+                          <p className="indentity">Brigadier General </p>
                         </div>
                       </div>
                     </div>
@@ -795,23 +801,25 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          Implementing the Army Management System has
+                          significantly enhanced our training programs. The
+                          system's ability to track individual soldier
+                          performance and training progress has allowed us to
+                          tailor our programs to meet the specific needs of our
+                          troops!.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team3.jpg"
+                           src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Smith Johnson</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Lisa Turner</h3>
+                          <p className="indentity">Sergeant</p>
                         </div>
                       </div>
                     </div>
@@ -822,23 +830,24 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          The Army Management System has greatly improved our
+                          mission planning and execution processes. With its
+                          advanced mapping and resource allocation features, we
+                          can now plan complex operations with greater precision
+                          and coordination!.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team2.jpg"
+                            src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Laura gill</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Samuel Green</h3>
+                          <p className="indentity">Major General</p>
                         </div>
                       </div>
                     </div>
@@ -849,23 +858,23 @@ function Home() {
                     <div className="testimonial">
                       <blockquote>
                         <q>
-                          Lorem ipsum dolor sit amet elit. Velit beatae
-                          laudantium voluptate rem ullam dolore nisi
-                          voluptatibus esse quasi, doloribus tempora. Dolores
-                          molestias adipisci dolo amet!.
+                          Using the Army Management System has transformed our
+                          administrative processes. Tasks that used to take
+                          hours, such as personnel management and report
+                          generation, are now completed in minutes!.
                         </q>
                       </blockquote>
                       <div className="testi-des">
                         <div className="test-img">
                           <img
-                            src="assets/images/team3.jpg"
+                            src="assets/images/instructor4.jpg"
                             className="img-fluid"
                             alt="client-img"
                           />
                         </div>
                         <div className="peopl align-self">
-                          <h3>Smith Johnson</h3>
-                          <p className="indentity">Student</p>
+                          <h3>Karen Martinez</h3>
+                          <p className="indentity">Lieutenant Colonel </p>
                         </div>
                       </div>
                     </div>

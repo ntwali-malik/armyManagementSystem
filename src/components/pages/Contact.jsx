@@ -27,8 +27,7 @@ function Contact() {
                   <div className="cont-right">
                     <h6>Our head office address</h6>
                     <p className="pr-lg-5">
-                      Address here, 208 Trainer Avenue street, Illinois, UK -
-                      62617.
+                      Kigali, Rwanda
                     </p>
                   </div>
                 </div>
@@ -39,7 +38,7 @@ function Contact() {
                   <div className="cont-right">
                     <h6>Call for help </h6>
                     <p>
-                      <a href="tel:+(21) 255 999 8888">+(21) 255 999 8888</a>
+                      <a href="tel:+(21) 255 999 8888">+(250) 78000000000</a>
                     </p>
                   </div>
                 </div>
@@ -51,7 +50,7 @@ function Contact() {
                     <h6>Contact with our support</h6>
                     <p>
                       <a href="mailto:coursing@mail.com" className="mail">
-                        coursing@mail.com
+                        example@mail.com
                       </a>
                     </p>
                   </div>
